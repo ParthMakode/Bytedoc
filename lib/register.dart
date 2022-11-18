@@ -137,9 +137,10 @@ class _MyRegisterState extends State<MyRegister> {
                                 )),
                           ),
 
+                          //this sized box is for creating space unlike my team's duelists
 
                           const SizedBox(
-                            height: 40,
+                            height: 41,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
