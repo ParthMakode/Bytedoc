@@ -39,7 +39,7 @@ class _MyLoginState extends State<MyLogin> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/login.png'), fit: BoxFit.cover),
+            image: AssetImage('assets/login.jpg'), fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -49,7 +49,7 @@ class _MyLoginState extends State<MyLogin> {
             Container(
               padding: const EdgeInsets.only(left: 35, top: 130),
               child: const Text(
-                'Welcome\nBack adeada',
+                'Welcome\nBack ',
                 style: TextStyle(color: Colors.white, fontSize: 33),
               ),
             ),
@@ -97,9 +97,9 @@ class _MyLoginState extends State<MyLogin> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const Text(
-                                'Sign in',
+                                ' Sign In',
                                 style: TextStyle(
-                                    fontSize: 27, fontWeight: FontWeight.w700),
+                                    fontSize: 27, fontWeight: FontWeight.w700,color: Colors.white ),
                               ),
                               CircleAvatar(
                                 radius: 30,
@@ -114,7 +114,7 @@ class _MyLoginState extends State<MyLogin> {
                             ],
                           ),
                           const SizedBox(
-                            height: 40,
+                            height: 20,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -132,9 +132,9 @@ class _MyLoginState extends State<MyLogin> {
                                   'Sign Up',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Color(0xff4c505b),
-                                      fontSize: 18),
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                      fontSize: 26),
                                 ),
                               ),
                               // TextButton(

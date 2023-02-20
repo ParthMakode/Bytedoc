@@ -1,15 +1,18 @@
 import 'package:fireapp/loggedIn.dart';
 import 'package:flutter/material.dart';
-import 'package:fireapp/hospital.dart';
+import 'package:fireapp/welcomeScreen.dart';
 import 'package:fireapp/login.dart';
 import 'package:fireapp/register.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fireapp/findHospital.dart';
+import 'package:fireapp/reportAccident.dart';
+import 'package:fireapp/riskIndex.dart';
 
-void main () async {
-  WidgetsFlutterBinding.ensureInitialized ();
-  await Firebase.initializeApp ();
-  runApp (const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,85 +22,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: LoggedIn(),
-        routes: {
-    'register': (context) => MyRegister(),
-    'login': (context) => MyLogin(),
-    'hospital': (context) => Hospital(),
-    },
-
+      debugShowCheckedModeBanner: false,
+      home: LoggedIn(),
+      routes: {
+        'register': (context) => MyRegister(),
+        'login': (context) => MyLogin(),
+        'hospital': (context) => WelcomeScreen(),
+        'findH': (context) => findHospital(),
+        'rAcci': (context) => reportAccident(),
+        'riskI': (context) => riskIndex(),
+      },
     );
   }
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 // class MyHomePage extends StatefulWidget {
 //   const MyHomePage({Key? key, required this.title}) : super(key: key);

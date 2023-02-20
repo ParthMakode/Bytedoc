@@ -1,5 +1,5 @@
-// import 'dart:js';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -15,7 +15,7 @@ class _MyRegisterState extends State<MyRegister> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  String popup = "Carefully enter password correctly";
+  String popup = "Enter details correctly";
 
   Future signUp() async {
     if (_passwordController.text.trim() ==
@@ -25,29 +25,22 @@ class _MyRegisterState extends State<MyRegister> {
         password: _passwordController.text.trim(),
       );
       popup = "Registered Successfully Please Login";
-      // showDialog(context: context, builder: context => AlertDialog() );
-      // showAlert(context);
-
+      addUserInfo(_nameController.text.trim());
     } else {
       popup = "Password fields do not match.\n Please try again";
-      // showAlert(context);
+
     }
 
-    // else
-    //   {
-    //     AlertDialog(
-    //         title: const Text('AlertDialog Title'),
-    // content: SingleChildScrollView(
-    // child: ListBody(
-    // children: const <Widget>[
-    // Text('This is a demo alert dialog.'),
-    // Text('Would you like to approve of this message?'),
-    // ],
-    // ),
-    // ),
-    //   }
-  }
 
+
+  }
+  Future addUserInfo(String name) async  {
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+
+    });
+
+  }
   @override
   void dispose() {
     _emailController.dispose();
@@ -62,7 +55,7 @@ class _MyRegisterState extends State<MyRegister> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/register.png'), fit: BoxFit.cover),
+            image: AssetImage('assets/login.jpg'), fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -94,6 +87,8 @@ class _MyRegisterState extends State<MyRegister> {
                             controller: _nameController,
                             style: const TextStyle(color: Colors.black),
                             decoration: InputDecoration(
+                                fillColor: Colors.grey.shade100,
+                                filled: true,
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: const BorderSide(
@@ -119,6 +114,8 @@ class _MyRegisterState extends State<MyRegister> {
                             controller: _emailController,
                             style: const TextStyle(color: Colors.black),
                             decoration: InputDecoration(
+                                fillColor: Colors.grey.shade100,
+                                filled: true,
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: const BorderSide(
@@ -144,7 +141,10 @@ class _MyRegisterState extends State<MyRegister> {
                             controller: _passwordController,
                             style: const TextStyle(color: Colors.black),
                             obscureText: true,
+
                             decoration: InputDecoration(
+                                fillColor: Colors.grey.shade100,
+                                filled: true,
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: const BorderSide(
@@ -171,6 +171,8 @@ class _MyRegisterState extends State<MyRegister> {
                             style: const TextStyle(color: Colors.black),
                             obscureText: true,
                             decoration: InputDecoration(
+                                fillColor: Colors.grey.shade100,
+                                filled: true,
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: const BorderSide(
@@ -201,7 +203,7 @@ class _MyRegisterState extends State<MyRegister> {
                               const Text(
                                 ' Sign Up',
                                 style: TextStyle(
-                                    color: Colors.blueGrey,
+                                    color: Colors.white,
                                     fontSize: 27,
                                     fontWeight: FontWeight.w700),
                               ),
@@ -213,9 +215,13 @@ class _MyRegisterState extends State<MyRegister> {
                                     // onPressed: signUp,
                                     onPressed: () {
                                       signUp();
-                                      showDialog(context: context,builder: (context)=>AlertDialog(title:Text(popup)));
-                                      FirebaseAuth.instance.signOut();
-                                      dispose();
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) =>
+                                              AlertDialog(title: Text(popup)));
+                                      // FirebaseAuth.instance.currentUser.displayName; //check here to
+                                      // dispose();
+                                      // FirebaseAuth.instance.signOut();
                                     },
                                     icon: const Icon(
                                       Icons.arrow_forward,
@@ -226,28 +232,26 @@ class _MyRegisterState extends State<MyRegister> {
                           const SizedBox(
                             height: 10,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, 'login');
-                                },
-                                style: const ButtonStyle(),
-                                child: const Text(
-                                  'Sign In',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      // decoration: TextDecoration.underline,
-                                      color: Colors.blueGrey,
-                                      fontSize: 27,
-                                      fontWeight: FontWeight.w700),
-                                ),
-
-                                ),
-
-                            ],
-                          )
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //   children: [
+                          //     TextButton(
+                          //       onPressed: () {
+                          //         Navigator.pushNamed(context, 'login');
+                          //       },
+                          //       style: const ButtonStyle(),
+                          //       child: const Text(
+                          //         'Sign  In',
+                          //         textAlign: TextAlign.left,
+                          //         style: TextStyle(
+                          //             // decoration: TextDecoration.underline,
+                          //             color: Colors.white,
+                          //             fontSize: 27,
+                          //             fontWeight: FontWeight.w700),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // )
                         ],
                       ),
                     )
